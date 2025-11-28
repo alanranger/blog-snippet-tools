@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AR CTA Generator — Brand Card (v3.3 • anchor+span buttons)</title>
+<style>
+:root{--brand:#F05922;--brand-dark:#D24F1E;--text:#2d2d2d;--muted:#555;--border:#eaeaea;--bg:#fafafa}
+html,body{margin:0;background:#fff;color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+.wrap{max-width:1100px;margin:24px auto;padding:24px}
+h1{margin:0 0 8px;font-size:22px;font-weight:800}
+.version{font-size:12px;color:#666;margin-left:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card{border:1px solid var(--border);border-radius:12px;padding:16px}
+.card h2{margin:0 0 8px;font-size:18px}
+.row{display:flex;gap:10px;align-items:center;margin:8px 0}
+label{min-width:160px;font-weight:600}
+input[type=text],input[type=url],input[type=number],textarea,select{width:100%;padding:10px;border:1px solid #ddd;border-radius:10px;font:inherit}
+textarea.code{height:220px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre}
+.switch{display:inline-flex;align-items:center;gap:8px}
+.btn{appearance:none;border:1px solid var(--brand-dark);background:var(--brand);color:#fff;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
+.btn.outline{background:#fff;color:#2d2d2d;border-color:#d0d0d0}
+.stack{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.preview{border:0;background:transparent;padding:0;border-radius:0}
+.help{font-size:13px;color:#666}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>AR CTA Generator — Brand Card <span class="version">(v3.3 • anchor+span buttons)</span></h1>
+  <p class="help">Outputs <code>&lt;a&gt;</code> links with a styled inner <code>&lt;span&gt;</code> pill. UTMs on by default (blog/cta). Campaign auto-suggests from Topic. Auto <code>aria-label</code>. Live preview + copy.</p>
+
+  <div class="grid">
+    <!-- LEFT: content -->
+    <div class="card">
+      <h2>Content</h2>
+      <div class="row"><label for="topic">Topic label</label><input id="topic" type="text" value="Lenses &amp; Filters — 1-to-1 Help" /></div>
+      <div class="row"><label for="headline">Headline</label><input id="headline" type="text" value="Want clear, confident kit advice?" /></div>
+      <div class="row"><label for="subhead">Subhead (HTML OK)</label><input id="subhead" type="text" value="<strong>Skip the gimmicks.</strong> Get practical guidance on lens protection, flare control and best practice—tailored to how you shoot." /></div>
+
+      <h2 style="margin-top:12px">Primary action</h2>
+      <div class="row">
+        <label class="switch"><input id="p-enable" type="checkbox" checked /> Enable</label>
+        <label style="min-width:auto">Type</label><select id="p-type"><option value="link" selected>Link button</option></select>
+      </div>
+      <div class="row"><label for="p-label">Label</label><input id="p-label" type="text" value="Book a 1-2-1 Online Lesson" /></div>
+      <div class="row"><label for="p-url">URL</label><input id="p-url" type="url" value="https://www.alanranger.com/photography-lessons-online-121" /></div>
+
+      <h2 style="margin-top:12px">Secondary action</h2>
+      <div class="row">
+        <label class="switch"><input id="s-enable" type="checkbox" checked /> Enable</label>
+        <label style="min-width:auto">Type</label><select id="s-type"><option value="link" selected>Link button</option></select>
+      </div>
+      <div class="row"><label for="s-label">Label</label><input id="s-label" type="text" value="See lesson options &amp; packages" /></div>
+      <div class="row"><label for="s-url">URL</label><input id="s-url" type="url" value="https://www.alanranger.com/photography-services-near-me/private-online-photography-classes-zoom" /></div>
+
+      <h2 style="margin-top:12px">Tertiary action</h2>
+      <div class="row">
+        <label class="switch"><input id="t-enable" type="checkbox" checked /> Enable</label>
+        <label style="min-width:auto">Type</label><select id="t-type"><option value="link" selected>Link button</option></select>
+      </div>
+      <div class="row"><label for="t-label">Label</label><input id="t-label" type="text" value="Join Free Online Photography Course" /></div>
+      <div class="row"><label for="t-url">URL</label><input id="t-url" type="url" value="https://www.alanranger.com/free-online-photography-course" /></div>
+
+      <h2 style="margin-top:12px">Backup text link</h2>
+      <div class="row"><label class="switch"><input id="b-enable" type="checkbox" checked /> Enable</label></div>
+      <div class="row"><label for="b-label">Link text</label><input id="b-label" type="text" value="Prefer a text link? Book a 1-2-1 lesson" /></div>
+      <div class="row"><label for="b-url">URL</label><input id="b-url" type="url" value="https://www.alanranger.com/photography-lessons-online-121" /></div>
+    </div>
+
+    <!-- RIGHT: options & schema -->
+    <div class="card">
+      <h2>Options</h2>
+      <div class="row"><label class="switch"><input id="newtab" type="checkbox" checked /> Open all in new tab</label></div>
+      <div class="row"><label class="switch"><input id="utm-toggle" type="checkbox" checked /> Add UTM params</label><span class="help">(defaults below)</span></div>
+      <div class="row"><label for="utm-source">utm_source</label><input id="utm-source" type="text" value="blog" /></div>
+      <div class="row"><label for="utm-medium">utm_medium</label><input id="utm-medium" type="text" value="cta" /></div>
+      <div class="row"><label for="utm-campaign">utm_campaign</label><input id="utm-campaign" type="text" placeholder="auto from Topic" /></div>
+      <div class="row"><label for="utm-content">utm_content</label><input id="utm-content" type="text" placeholder="auto (primary/secondary/tertiary/backup)" disabled /></div>
+
+      <h2 style="margin-top:8px">JSON-LD schema</h2>
+      <div class="row"><label class="switch"><input id="svc-toggle" type="checkbox" checked /> Include Service</label></div>
+      <div class="row"><label for="svc-name">Service name</label><input id="svc-name" type="text" value="Online 1-to-1 Photography Lesson (Zoom)" /></div>
+      <div class="row"><label for="svc-url">Service URL</label><input id="svc-url" type="url" value="https://www.alanranger.com/photography-lessons-online-121" /></div>
+      <div class="row"><label for="svc-price">Price</label><input id="svc-price" type="number" step="0.01" placeholder="e.g., 29" /></div>
+      <div class="row"><label for="svc-currency">Currency</label><input id="svc-currency" type="text" value="GBP" /></div>
+
+      <div class="stack" style="margin-top:10px">
+        <button id="copy-cta" class="btn" type="button">Copy CTA HTML</button>
+        <button id="copy-schema" class="btn" type="button">Copy JSON-LD</button>
+        <button id="reset" class="btn outline" type="button">Reset</button>
+        <span id="copy-status" class="help" aria-live="polite"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid" style="margin-top:18px">
+    <div class="card">
+      <h2>Generated CTA (paste into Squarespace Code Block)</h2>
+      <textarea id="cta-out" class="code" readonly></textarea>
+    </div>
+    <div class="card">
+      <h2>Generated JSON-LD (optional, separate Code Block)</h2>
+      <textarea id="schema-out" class="code" readonly></textarea>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:18px">
+    <h2>Live Preview</h2>
+    <div id="preview" class="preview"></div>
+    <p class="help">Squarespace will ignore these page styles and only use the inline styles included in the snippet.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const inputs = ['topic','headline','subhead','p-enable','p-type','p-label','p-url','s-enable','s-type','s-label','s-url','t-enable','t-type','t-label','t-url','b-enable','b-label','b-url','newtab','utm-toggle','utm-source','utm-medium','utm-campaign','svc-toggle','svc-name','svc-url','svc-price','svc-currency'];
+  const storageKey = 'arCtaGenBrandCardV33';
+  let campaignTouched = false;
+
+  const escText = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const escAttr = s => String(s ?? '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const slugify = s => String(s || 'campaign').toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+
+  function load(){
+    try{
+      const raw = localStorage.getItem(storageKey);
+      if(raw){
+        const d = JSON.parse(raw);
+        inputs.forEach(id => { const el=$(id); if(!el) return; el.type==='checkbox' ? el.checked=!!d[id] : (d[id]!=null&&(el.value=d[id])); });
+        if(d['utm-campaign']) campaignTouched = true;
+      }else{
+        $('utm-toggle').checked = true; $('utm-source').value='blog'; $('utm-medium').value='cta';
+      }
+    }catch(e){}
+  }
+  function save(){
+    const d = {}; inputs.forEach(id => { const el=$(id); if(!el) return; d[id] = el.type==='checkbox' ? el.checked : el.value; });
+    try{ localStorage.setItem(storageKey, JSON.stringify(d)); }catch(e){}
+  }
+  function autoCampaignFromTopic(){
+    if(campaignTouched) return;
+    $('utm-campaign').value = slugify(($('topic').value||''));
+  }
+  $('utm-campaign')?.addEventListener('input', ()=>{ campaignTouched=true; save(); });
+
+  function withUtm(url, which){
+    if(!$('utm-toggle').checked) return url;
+    try{
+      const u = new URL(url);
+      const src=$('utm-source').value.trim(), med=$('utm-medium').value.trim(), cam=$('utm-campaign').value.trim();
+      if(src) u.searchParams.set('utm_source',src);
+      if(med) u.searchParams.set('utm_medium',med);
+      if(cam) u.searchParams.set('utm_campaign',cam);
+      if(which) u.searchParams.set('utm_content',which);
+      return u.toString();
+    }catch(e){ return url; }
+  }
+  const ariaFrom = label => `${(label||'Call to action').trim()} on Alan Ranger Photography`;
+
+  // span styles (Squarespace-proof)
+  const pillPrimary   = 'display:inline-block;appearance:none;border:1px solid #D24F1E;background:#F05922;color:#fff;padding:12px 18px;border-radius:12px;font-weight:700;line-height:1;cursor:pointer;box-shadow:0 1px 0 rgba(0,0,0,.05);white-space:nowrap;';
+  const pillSecondary = 'display:inline-block;appearance:none;border:2px solid #F05922;background:transparent;color:#C64F1E;padding:11px 16px;border-radius:12px;font-weight:700;line-height:1;cursor:pointer;white-space:nowrap;';
+  const pillTertiary  = 'display:inline-block;appearance:none;border:2px solid #d9d9d9;background:#fff;color:#2d2d2d;padding:11px 16px;border-radius:12px;font-weight:700;line-height:1;cursor:pointer;white-space:nowrap;';
+
+  function buildLink(kind){
+    if(!$(kind+'-enable').checked) return '';
+    const labelRaw = $(kind+'-label').value||''; const label=escText(labelRaw);
+    let url = (($(kind+'-url').value)||'').trim(); if(!url) return '';
+    const which = kind==='p'?'primary':kind==='s'?'secondary':kind==='t'?'tertiary':'backup';
+    url = withUtm(url, which);
+    const target = $('newtab').checked ? ' target="_blank" rel="noopener"' : '';
+    const aria = `aria-label="${escAttr(ariaFrom(labelRaw))}"`;
+    const pill = (kind==='p'?pillPrimary:(kind==='s'?pillSecondary:pillTertiary));
+    return `<a href="${escAttr(url)}"${target} ${aria} style="text-decoration:none;">
+              <span style="${pill}">${label}</span>
+            </a>`;
+  }
+  function buildBackup(){
+    if(!$('b-enable').checked) return '';
+    let url = withUtm((($('b-url').value)||'').trim(),'backup'); if(!url) return '';
+    const raw=$('b-label').value||'Learn more'; const labelTxt=raw.replace(/^Prefer a text link\?\s*/,'').trim();
+    const target = $('newtab').checked ? ' target="_blank" rel="noopener"' : '';
+    return `<div style="margin-top:14px;font-size:15px;color:#555;">
+              Prefer a text link?
+              <a href="${escAttr(url)}"${target} aria-label="${escAttr(ariaFrom(labelTxt))}" style="color:#C64F1E;text-decoration:underline;">${escText(labelTxt)}</a>
+            </div>`;
+  }
+  function buildCTA(){
+    const topic = $('topic').value||'CTA', headline=escText($('headline').value||''), sub=$('subhead').value||'';
+    const p=buildLink('p'), s=buildLink('s'), t=buildLink('t'), backup=buildBackup();
+    return `<!-- AR CTA v3.3 (anchor+span): ${escText(topic)} -->
+<div role="region" aria-label="${escAttr(topic)} CTA" style="border:1px solid #eaeaea;border-left:10px solid #F05922;background:#fafafa;padding:24px;border-radius:12px;margin:28px 0;">
+  <h3 style="margin:0 0 8px;font-weight:800;font-size:28px;line-height:1.25;color:#2d2d2d;">${headline}</h3>
+  <p style="margin:0 0 18px;font-size:18px;line-height:1.6;color:#444;">${sub}</p>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
+    ${p}
+    ${s}
+    ${t}
+  </div>
+  ${backup}
+</div>`;
+  }
+  function buildSchema(){
+    if(!$('svc-toggle').checked) return '';
+    const name=$('svc-name').value.trim(), url=$('svc-url').value.trim(), price=$('svc-price').value.trim(), curr=($('svc-currency').value.trim()||'GBP');
+    const obj={"@context":"https://schema.org","@type":"Service","@id":`https://www.alanranger.com/#${slugify(name||'service')}`,"name":name||"Photography Coaching","serviceType":"Photography coaching","provider":{"@type":"Person","@id":"https://www.alanranger.com/#person","name":"Alan Ranger","url":"https://www.alanranger.com"},"areaServed":{"@type":"AdministrativeArea","name":"United Kingdom"},"url":url||undefined,"offers":{"@type":"Offer","price":price||undefined,"priceCurrency":curr,"availability":"https://schema.org/InStock","url":url||undefined}};
+    const open='<script type="application/ld+json">', close='<'+'/script>'; return open+JSON.stringify(obj,null,2)+close;
+  }
+  function render(){ autoCampaignFromTopic(); save(); const cta=buildCTA(), schema=buildSchema(); $('cta-out').value=cta; $('schema-out').value=schema; $('preview').innerHTML=cta; }
+  function copy(id){ const ta=$(id); ta.select(); ta.setSelectionRange(0,999999); document.execCommand('copy'); $('copy-status').textContent='Copied!'; setTimeout(()=>{$('copy-status').textContent='';},1200); }
+  function reset(){ localStorage.removeItem(storageKey); location.reload(); }
+
+  load();
+  $('topic').addEventListener('input', ()=>{ autoCampaignFromTopic(); render(); });
+  inputs.forEach(id=>{ const el=$(id); if(!el) return; el.addEventListener('input',render); el.addEventListener('change',render); });
+  $('copy-cta').addEventListener('click', ()=>copy('cta-out'));
+  $('copy-schema').addEventListener('click', ()=>copy('schema-out'));
+  $('reset').addEventListener('click', reset);
+  render();
+})();
+</script>
+</body>
+</html>

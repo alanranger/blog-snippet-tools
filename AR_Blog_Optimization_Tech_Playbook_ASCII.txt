@@ -1,0 +1,159 @@
+AR BLOG OPTIMIZATION - TECHNICAL PLAYBOOK (ASCII)
+Version: 1.0
+Updated: 2025-08-24 10:58 UTC
+
+Purpose
+- Give a precise step-by-step process to optimize a blog post with consistent UX, schema,
+  UTMs and PDF assets. ASCII-only (no smart quotes, em dashes, or bullets) to avoid
+  character issues on some PDF renderers and Squarespace embeds.
+
+Preflight (5 minutes)
+1) Confirm primary search intent and H1.
+2) Collect hero image URL (2500w+) and plain alt text.
+3) Decide money page for this post (usually 1-to-1 Zoom help or a Clinic).
+4) Pick 3 related posts that are already enhanced.
+
+Build (in this exact order)
+1) Intro Hook Card (problem -> how this guide solves it -> 3 key takeaways).
+2) Hero with BlogPosting JSON-LD (required), optional ImageObject JSON-LD (hero credit).
+3) Checklist PDF content JSON (1 A4 page). Generate and upload PDF, note final URL.
+   Add TextDigitalDocument JSON-LD with: name, description, inLanguage, encodingFormat,
+   isAccessibleForFree True, url of the PDF, publisher.
+4) CTA Card (primary = PDF, secondary = 1-to-1 Zoom Help, tertiary = Clinic if relevant).
+   Add UTMs: utm_source=blog, utm_medium=cta or textlink, utm_campaign={slug}-checklist,
+   utm_content={primary|121|clinic|backup}.
+   Use anchor+span pattern to override Squarespace and keep brand orange.
+5) Quick Tips Card (6 to 10 concise bullets drawn from the post).
+6) Editing Tips Card (5 to 8 action steps: capture -> basic edits -> polish).
+7) Continue Learning Card (3 related posts + the money page again). All links open in new tab
+   with UTMs.
+8) Visible FAQ Panel (accordion) and a single FAQPage JSON-LD block. Add new Qs over time.
+9) Meta description (150 to 158 chars), must include the exact head term + a benefit + hook.
+10) Optional: embed tools or calculators. Add a visible "Open in new tab" pill and override
+    button styles so brand orange renders on Squarespace.
+
+Generators - Rules of Thumb
+- Checklist generator v1.6.3: target 1 A4 page. Dense but readable. If overflow, cut by 10-20%.
+- CTA generator v3.3: always include UTMs. Use anchor+span buttons, not raw <button>.
+- Snippet skeletons pack: keep snippets in code blocks; paste into a Code Block (not Markdown).
+
+UTM Convention
+- utm_source=blog
+- utm_medium=cta  OR  textlink
+- utm_campaign={slug}-checklist   example: still-life-checklist
+- utm_content=primary  OR  121-zoom  OR  clinic  OR  backup
+
+Squarespace Button Override (anchor + span)
+- Never rely on Squarespace buttons for hero CTAs. Use <a><span> with inline styles.
+- Set background, border, color, border-radius and box-shadow on the span.
+- Add role="button" and aria-label on the anchor. Use rel="noopener" and target="_blank".
+- Add a small JS-free chevron using a rotated border element inside the span if needed.
+
+Anchor + Span Pattern (brand orange)
+<a href="https://example.com?utm_source=blog&utm_medium=cta&utm_campaign=slug-checklist&utm_content=primary"
+   target="_blank" rel="noopener" aria-label="Download checklist" style="text-decoration:none">
+  <span style="display:inline-block;border:1px solid #D24F1E;background:#F05922;color:#fff;
+               padding:12px 18px;border-radius:12px;font-weight:700;line-height:1;white-space:nowrap">
+    Download Checklist (PDF)
+  </span>
+</a>
+
+ImageObject JSON-LD (hero credit) - optional
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ImageObject",
+  "name": "Hero image name",
+  "description": "Hero image used on this page.",
+  "inLanguage": "en-GB",
+  "contentUrl": "https://.../hero.jpg?format=2500w",
+  "thumbnailUrl": "https://.../hero.jpg?format=2500w",
+  "encodingFormat": "image/jpeg",
+  "uploadDate": "2025-08-23",
+  "creditText": "Alan Ranger Photography",
+  "representativeOfPage": true,
+  "publisher": {
+    "@type": "Organization",
+    "name": "Alan Ranger Photography",
+    "url": "https://www.alanranger.com/"
+  },
+  "url": "https://www.alanranger.com/contact/"
+}
+</script>
+
+BlogPosting JSON-LD (minimum)
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Exact H1 here",
+  "articleSection": "Photography",
+  "inLanguage": "en-GB",
+  "datePublished": "2025-08-23",
+  "dateModified": "2025-08-23",
+  "mainEntityOfPage": "https://www.alanranger.com/path-to-post",
+  "url": "https://www.alanranger.com/path-to-post",
+  "image": "https://.../hero.jpg?format=2500w",
+  "author": {"@type":"Person","name":"Alan Ranger"},
+  "publisher": {"@type":"Organization","name":"Alan Ranger Photography","url":"https://www.alanranger.com/"}
+}
+</script>
+
+TextDigitalDocument JSON-LD (for the 1-page checklist PDF)
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TextDigitalDocument",
+  "name": "Topic - 1-Page Field Checklist (Printable PDF)",
+  "description": "Downloadable A4 checklist: principles, types, on-location, do and dont, drills, edit tips.",
+  "inLanguage": "en-GB",
+  "isAccessibleForFree": "https://schema.org/True",
+  "encodingFormat": "application/pdf",
+  "url": "https://www.alanranger.com/s/{Topic}_Field_Checklist.pdf",
+  "publisher": {"@type":"Organization","name":"Alan Ranger Photography","url":"https://www.alanranger.com/"}
+}
+</script>
+
+FAQPage JSON-LD (single block per page)
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Question 1","acceptedAnswer":{"@type":"Answer","text":"Answer 1"}},
+    {"@type":"Question","name":"Question 2","acceptedAnswer":{"@type":"Answer","text":"Answer 2"}}
+  ]
+}
+</script>
+
+Course Page Notes (for free course landing)
+- Use Course with offers (price 0, availability InStock, category Free course).
+- Add hasCourseInstance with courseMode online, courseWorkload PT60H, and VirtualLocation.
+- Optional: hasPart referencing a few sample lessons (Article). Keep it short.
+- PaywalledContent is allowed if any gated elements exist, but keep it consistent.
+
+Meta Description Pattern (150-158 chars)
+- Must include the exact head term. Example:
+  What is still life photography? Learn how to plan, light and style objects, then polish with
+  fast edits. Free 1-page field checklist inside.
+
+Common Gotchas
+- Ghost white button or duplicate button: remove old Squarespace buttons near the custom CTA.
+- Duplicate FAQPage: ensure only one FAQ JSON-LD block exists.
+- Unparsable JSON-LD: check trailing commas, smart quotes, or stray HTML.
+- Overflow PDFs: trim copy to 1 A4 page; reduce margins last.
+- Fonts: use ASCII only if you see garbage chars in PDFs.
+
+QA Checklist (fast)
+1) Desktop and mobile render OK, no CLS jumps.
+2) All CTAs are brand orange and open in new tab; UTMs correct.
+3) One FAQPage JSON-LD block only.
+4) BlogPosting, Breadcrumbs, TextDigitalDocument validate in Rich Results Test.
+5) Hero alt text accurate; headings order logical (H1 then H2).
+
+File Naming
+- content_{slug}_v1.6.3.json   -> source for PDF generator
+- {Topic}_Field_Checklist.pdf  -> final asset
+- Hero image named with topic; add alt text in the page.
+
+End.

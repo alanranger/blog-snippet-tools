@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AR Blog Optimization Template Pack</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+    .card { border-left: 6px solid orange; background: #fafafa; padding: 16px; margin: 20px 0; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .card h3 { color: orange; margin-top: 0; }
+    .links a { color: #2a5bd7; text-decoration: none; display: inline-block; margin: 6px 0; }
+    .links a:hover { text-decoration: underline; }
+    .tips-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+    .tips-grid .tip { flex: 1 1 45%; background: #fff; padding: 12px; border: 1px solid #ddd; border-radius: 6px; }
+  </style>
+</head>
+<body>
+
+  <h1>AR Blog Optimization Template Pack</h1>
+  <p>Copy-paste blocks for consistent blog optimization.</p>
+
+  <!-- Intro Hook -->
+  <div class="card">
+    <h3>Want your images to pop?</h3>
+    <p><strong>[KEY TAKEAWAY ONE]</strong> → Your supporting text here.</p>
+    <p><strong>[KEY TAKEAWAY TWO]</strong> → Your supporting text here.</p>
+    <p><strong>[KEY TAKEAWAY THREE]</strong> → Your supporting text here.</p>
+  </div>
+
+  <!-- Quick Tips -->
+  <div class="card">
+    <h3>Quick Tips</h3>
+    <div class="tips-grid">
+      <div class="tip"><strong>[TIP 1]</strong><br> Supporting detail.</div>
+      <div class="tip"><strong>[TIP 2]</strong><br> Supporting detail.</div>
+      <div class="tip"><strong>[TIP 3]</strong><br> Supporting detail.</div>
+      <div class="tip"><strong>[TIP 4]</strong><br> Supporting detail.</div>
+    </div>
+  </div>
+
+  <!-- Editing Tips -->
+  <div class="card">
+    <h3>Editing Tips</h3>
+    <ul>
+      <li>[EDITING TIP 1]</li>
+      <li>[EDITING TIP 2]</li>
+      <li>[EDITING TIP 3]</li>
+    </ul>
+  </div>
+
+  <!-- Continue Learning -->
+  <div class="card">
+    <h3>📚 Continue Learning</h3>
+    <div class="links">
+      <p><strong>Next lesson:</strong> → <a href="[BLOG LINK 1]?utm_source=blog&utm_medium=cta&utm_campaign=continue-learning&utm_content=lesson1" target="_blank">[BLOG TITLE 1]</a></p>
+      <p><strong>Next lesson:</strong> → <a href="[BLOG LINK 2]?utm_source=blog&utm_medium=cta&utm_campaign=continue-learning&utm_content=lesson2" target="_blank">[BLOG TITLE 2]</a></p>
+      <p><strong>Next lesson:</strong> → <a href="[BLOG LINK 3]?utm_source=blog&utm_medium=cta&utm_campaign=continue-learning&utm_content=lesson3" target="_blank">[BLOG TITLE 3]</a></p>
+      <p><strong>Personal support:</strong> → <a href="[MONEY PAGE LINK]?utm_source=blog&utm_medium=cta&utm_campaign=continue-learning&utm_content=personal-support" target="_blank">[MONEY PAGE TITLE]</a></p>
+    </div>
+  </div>
+
+  <!-- Brand CTA -->
+  <div class="card">
+    <h3>[TOPIC LABEL]</h3>
+    <p><strong>[HEADLINE]</strong><br>[SUBHEAD]</p>
+    <p><a href="[PRIMARY URL]?utm_source=blog&utm_medium=cta&utm_campaign=[SLUG]-help&utm_content=primary" target="_blank"><strong>[PRIMARY LABEL]</strong></a></p>
+    <p><a href="[SECONDARY URL]?utm_source=blog&utm_medium=cta&utm_campaign=[SLUG]-help&utm_content=secondary" target="_blank"><strong>[SECONDARY LABEL]</strong></a></p>
+    <p><a href="[TERTIARY URL]?utm_source=blog&utm_medium=cta&utm_campaign=[SLUG]-help&utm_content=tertiary" target="_blank"><strong>[TERTIARY LABEL]</strong></a></p>
+  </div>
+
+  <!-- JSON-LD Templates -->
+  <h2>Schema Templates</h2>
+  <pre><code>{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "[BLOG TITLE]",
+  "image": "[IMAGE URL]",
+  "author": {
+    "@type": "Person",
+    "name": "Alan Ranger",
+    "url": "https://www.alanranger.com/about-alan-ranger"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Alan Ranger Photography",
+    "url": "https://www.alanranger.com"
+  },
+  "datePublished": "[YYYY-MM-DD]T00:00:00+01:00",
+  "dateModified": "[YYYY-MM-DD]T00:00:00+01:00",
+  "hasPart": {
+    "@type": "DigitalDocument",
+    "hasPart": {
+      "@type": "MediaObject",
+      "encodingFormat": "image/png",
+      "contentUrl": "[IMAGE URL]"
+    }
+  }
+}
+</code></pre>
+
+  <pre><code>{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "[QUESTION 1]",
+      "acceptedAnswer": { "@type": "Answer", "text": "[ANSWER 1]" }
+    },
+    {
+      "@type": "Question",
+      "name": "[QUESTION 2]",
+      "acceptedAnswer": { "@type": "Answer", "text": "[ANSWER 2]" }
+    }
+  ]
+}
+</code></pre>
+
+</body>
+</html>
