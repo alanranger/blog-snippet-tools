@@ -75,7 +75,19 @@ function assertSpacedCss(html, label) {
   if (hits.length) throw new Error(`${label}: compressed CSS (add spaces inside { }): ${hits[0]}`);
 }
 
+function assertSpacedJs(html, label) {
+  const hits = [];
+  String(html).replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gi, (_, js) => {
+    const re = /\{[^\s{}]+\}|\$\{[^\s{}]+\}/g;
+    let m;
+    while ((m = re.exec(js))) hits.push(m[0]);
+    return _;
+  });
+  if (hits.length) throw new Error(`${label}: compressed JS (add spaces inside { } / \${ }): ${hits[0]}`);
+}
+
 assertSpacedCss(html, "rps table snippet");
+assertSpacedJs(html, "rps table snippet");
 fs.mkdirSync(path.dirname(outPath), { recursive: true });
 fs.writeFileSync(outPath, html, "utf8");
 console.log("Wrote", outPath, `(${html.length} bytes)`);
