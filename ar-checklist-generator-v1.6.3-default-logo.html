@@ -14,42 +14,42 @@
     --text:#222; --muted:#666; --bg:#f7f7f7; --panel:#fff;
     --radius:14px; --shadow:0 10px 30px rgba(0,0,0,.08);
   }
-  html,body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+  html,body{ margin:0; background:var(--bg); color:var(--text); font-family:Arial,Helvetica,sans-serif }
   .wrap{display:grid;grid-template-columns:600px 1fr;gap:20px;align-items:start;padding:20px;max-width:1680px;margin:auto}
   .panel{background:var(--panel);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 18px 14px;position:sticky;top:16px;align-self:start}
   h2{margin:0 0 12px;font-size:20px}
   label{font-size:12px;color:var(--muted);display:block;margin:14px 0 6px}
   input[type="text"],input[type="number"],textarea{width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid #ddd;border-radius:10px;font-size:14px;outline:none;background:#fafafa}
-  textarea{min-height:72px;resize:vertical;line-height:1.45}
+  textarea{ min-height:72px; resize:vertical; line-height:1.45 }
   .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .btn{display:inline-flex;gap:8px;align-items:center;border:none;border-radius:12px;padding:12px 18px;font-weight:700;background:var(--brand);color:#fff;cursor:pointer;box-shadow:0 8px 28px rgba(241,89,34,.25)}
-  .btn.secondary{background:#222}.btn.ghost{background:#eee;color:#222;font-weight:600}
-  .btnbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .btn.secondary{ background:#222 }.btn.ghost{ background:#eee; color:#222; font-weight:600 }
+  .btnbar{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px }
   .pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #ddd;border-radius:999px;padding:6px 10px;font-size:12px;color:#555}
-  .pill.ok{background:#e9f8e8;border-color:#cfe9cf}
-  .pill.over{background:#ffe6e6;border-color:#f3c9c9}
+  .pill.ok{ background:#e9f8e8; border-color:#cfe9cf }
+  .pill.over{ background:#ffe6e6; border-color:#f3c9c9 }
 
   /* ======= SHEET / PREVIEW ======= */
   .sheet{background:#fff;border-radius:16px;box-shadow:var(--shadow);overflow:hidden;margin:0 auto}
-  .page{position:relative;font-size:10.8pt}
+  .page{ position:relative; font-size:10.8pt }
   .banner{background:var(--brand);color:#fff;border-radius:12px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-  .brand{display:flex;align-items:center;gap:12px}
+  .brand{ display:flex; align-items:center; gap:12px }
   .logo{width:42px;height:42px;border-radius:50%;flex:0 0 42px;background:#000 center/cover no-repeat;border:2px solid #fff}
-  .brand h1{font-size:18px;line-height:1.15;margin:0;font-weight:800;letter-spacing:.2px}
-  .site{opacity:.92;font-weight:600}
+  .brand h1{ font-size:18px; line-height:1.15; margin:0; font-weight:800; letter-spacing:.2px }
+  .site{ opacity:.92; font-weight:600 }
 
   .section{margin:12px 0 10px}
   .section h3{margin:0 0 6px;color:var(--brand);font-size:14.5px}
-  .section ul{margin:0;padding-left:20px}
+  .section ul{ margin:0; padding-left:20px }
   .section li{margin:4.5px 0;line-height:1.42}
   .twocol{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .card{border:1px solid #eee;border-radius:12px;padding:10px 12px}
   .card h4{margin:0 0 6px;font-size:13.5px}
-  .card.do{background:#edf9f0;border-color:#cfe9cf}
-  .card.dont{background:#fdeeee;border-color:#f3c9c9}
-  .footer{margin-top:10px;font-size:12px;color:#555}
-  .footer a{color:#1a73e8;text-decoration:underline}
-  .li-dot{display:inline-block;width:12px;margin-left:-12px}
+  .card.do{ background:#edf9f0; border-color:#cfe9cf }
+  .card.dont{ background:#fdeeee; border-color:#f3c9c9 }
+  .footer{ margin-top:10px; font-size:12px; color:#555 }
+  .footer a{ color:#1a73e8; text-decoration:underline }
+  .li-dot{ display:inline-block; width:12px; margin-left:-12px }
 
   /* Avoid mid-page splits in rendered PDF */
   .sheet, .page, .section, .banner, .twocol, .card {page-break-inside: avoid; break-inside: avoid;}
@@ -60,12 +60,12 @@
 
   @media print {
     @page{size:A4;margin:4mm 6mm 4mm 6mm}
-    .wrap{grid-template-columns:1fr}
+    .wrap{ grid-template-columns:1fr }
     .panel{display:none !important}
     .sheet{box-shadow:none;margin:0 auto}
   }
-  .exporting .sheet{box-shadow:none}
-  .exporting .panel{box-shadow:none}
+  .exporting .sheet{ box-shadow:none }
+  .exporting .panel{ box-shadow:none }
 </style>
 </head>
 <body>
@@ -359,8 +359,8 @@ Tame noise with detail balance (luminance vs. sharpness).</textarea>
   els.printBtn.addEventListener('click', ()=>{
     refresh();
     const w=window.open('','_blank','noopener'); if(!w) return;
-    const css=`<style>@page{size:A4;margin:${els.mTop.value}mm ${els.mRight.value}mm ${els.mBottom.value}mm ${els.mLeft.value}mm}
-      body{margin:0;font-family:Arial,Helvetica,sans-serif}.sheet{margin:0 auto}</style>`;
+    const css=`<style>@page{size:A4;margin:${ els.mTop.value }mm ${ els.mRight.value }mm ${ els.mBottom.value }mm ${ els.mLeft.value }mm}
+      body{ margin:0; font-family:Arial,Helvetica,sans-serif }.sheet{margin:0 auto}</style>`;
     w.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>Print preview</title>${css}</head><body>${els.sheet.outerHTML}</body></html>`);
     w.document.close();
     w.onload=()=>setTimeout(()=>w.print(),150);
